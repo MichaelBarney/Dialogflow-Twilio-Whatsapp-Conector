@@ -21,20 +21,18 @@ A simple way to connect/integrate Dialogflow and Twilio to create Whatsapp Chatb
 
 **Step 8** - Click on the Dropdown "**Enviroment Variables, Networking, Timeouts and More**"
 
-**Step 9** - Click on the Dropdown "**Enviroment Variables, Networking, Timeouts and More**"
+**Step 9** - In the **Enviroment** section, click on "Add Variable"
 
-**Step 10** - In the **Enviroment** section, click on "Add Variable"
-
-**Step 11** - Add variables called:
+**Step 10** - Add variables called:
 
  - **projectId** (the project ID found on your Dialogflow's agent settings page)
  -  **accountSid** (your twilio account Sid value, found on the main dashboard of your Twilio project)
  -  **authToken** (the authentication token for your Twilio acconut, found on the main dashboard of your Twilio project)
  
-**Step 12** - Click on "Create". In 1-2 minutes your integration will be up and running.
+**Step 11** - Click on "Create". In 1-2 minutes your integration will be up and running.
 
-**Step 13** - Click on your created function. Open the **Trigger** tab and copy the URL.
+**Step 12** - Click on your created function. Open the **Trigger** tab and copy the URL.
 
-**Step 14** - In your Twilio Sandbox configuration ([link](https://www.twilio.com/console/sms/whatsapp/sandbox)), paste the URL into the "**when a message comes in**" field and click **save**.
+**Step 13** - In your Twilio Sandbox configuration ([link](https://www.twilio.com/console/sms/whatsapp/sandbox)), paste the URL into the "**when a message comes in**" field and click **save**.
 
-**Step 15** - Test your chatbot. You should now be able to talk to your Dialogflow chatbot through the Twilio Sandbox's WhatsApp number.
+**Step 14** - Test your chatbot. You should now be able to talk to your Dialogflow chatbot through the Twilio Sandbox's WhatsApp number.
