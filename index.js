@@ -9,42 +9,62 @@ const client = require('twilio')(accountSid, authToken);
 const dialogflow = require('dialogflow');
 const sessionClient = new dialogflow.SessionsClient();
 
+// Twilio Webhook Function
 exports.TwilioWebhook = functions.https.onRequest(async (request, response) => {
-    const body = request.body;
-    const receivedMsg = body.Body;
-    const userNumber = body.From;
-    const myNumber = request.body.To;
+  // Get WhatsApp Message Information  
+  const body = request.body;
+  const receivedMsg = body.Body;
+  const userNumber = body.From;
+  const myNumber = request.body.To;
 
-    if(receivedMsg){
-      const sessionPath = sessionClient.sessionPath(projectId, userNumber);
-      const request = {
-        session: sessionPath,
-        queryInput: {
-          text: {
-            text: receivedMsg,
-            languageCode: "pt-BR",
-          },
+  if(receivedMsg){
+    // Configure Dialogflow Session
+    const sessionPath = sessionClient.sessionPath(projectId, userNumber);
+    const request = {
+      session: sessionPath,
+      queryInput: {
+        text: {
+          text: receivedMsg,
+          languageCode: "pt-BR",
         },
-      };
+      },
+    };
   
-      try {
-        const fulfillmentMessages = (await sessionClient.detectIntent(request))[0].queryResult.fulfillmentMessages;
-        for (const response of fulfillmentMessages){
-          let responseMsg = "";
-          if(response.text){
-            for (const text of response.text.text){
-              responseMsg = `${responseMsg}${text}\n`;
+    // Get Dialogflow Response
+    try {
+      const fulfillmentMessages = (await sessionClient.detectIntent(request))[0].queryResult.fulfillmentMessages;
+      
+      // Iterate over every message
+      for (const response of fulfillmentMessages){
+        // Send Text Message
+        if(response.text){
+            const responseMsg = response.text.text[0];
+            const body = {
+                from: myNumber,
+                body: responseMsg,
+                to: userNumber
             }
+            await client.messages.create(body)
+        }
+
+        // Send media files
+        if(response.payload){
+          if(response.payload.fields.mediaUrl){
+            const mediaUrl = response.payload.fields.mediaUrl.stringValue;
+            const body = {
+                from: myNumber,
+                body: "",
+                to: userNumber,
+                mediaUrl,
+            }
+            await client.messages.create(body)
           }
-          await client.messages.create({
-              from: myNumber,
-              body: responseMsg,
-              to: userNumber
-          })
         }
       }
-      catch(e){
-        console.log(e)
-      }
     }
+    catch(e){
+      console.log(e)
+    }
+  }
+  response.status(200).send("Sent!");
 });
