@@ -5,7 +5,7 @@
 
   
 
-A simple way to connect/integrate Dialogflow and Twilio to create Whatsapp Chatbots
+A simple way to connect and integrate Dialogflow and Twilio to create Whatsapp Chatbots
 
   
 
