@@ -82,4 +82,12 @@ You can also send media files such as Images, Audios, PDFs and Videos. To do so,
     {
 	    "mediaUrl": "<<YOUR URL>>"
     }
+
+You can optionally include a **text** paramater to send a message alongside the image:
+
+    {
+	    "mediaUrl": "<<YOUR URL>>",
+	    "text": "<<YOUR MESSAGE>>"
+    }
+
 [See here](https://support.twilio.com/hc/en-us/articles/360017961894-Sending-and-Receiving-Media-with-WhatsApp-Messaging-on-Twilio-Beta-) Twilio's documentation to learn more about the limitations for sending media files.
