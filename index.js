@@ -51,9 +51,16 @@ exports.TwilioWebhook = functions.https.onRequest(async (request, response) => {
         if(response.payload){
           if(response.payload.fields.mediaUrl){
             const mediaUrl = response.payload.fields.mediaUrl.stringValue;
+            
+            let text = "";
+            
+            if(response.payload.fields.text){
+              text = response.payload.fields.text.stringValue
+            }
+            
             const body = {
                 from: myNumber,
-                body: "",
+                body: text,
                 to: userNumber,
                 mediaUrl,
             }
