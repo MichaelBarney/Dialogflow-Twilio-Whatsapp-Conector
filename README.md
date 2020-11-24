@@ -41,11 +41,11 @@ A simple way to connect and integrate Dialogflow and Twilio to create Whatsapp C
 
   
 
-**Step 8** - Click on the Dropdown "**Enviroment Variables, Networking, Timeouts and More**"
+**Step 8** - Click on the Dropdown "**Variables, Networking and Advanced Settings**"
 
   
 
-**Step 9** - In the **Enviroment** section, click on "Add Variable"
+**Step 9** - In the **Enviroment Variables** section, look for **Runtime Enviroment Variables** and click on "Add Variable"
 
   
 
