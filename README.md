@@ -69,11 +69,12 @@ A simple way to connect and integrate Dialogflow and Twilio to create Whatsapp C
 
 **Step 13** - In your Twilio Sandbox configuration ([link](https://www.twilio.com/console/sms/whatsapp/sandbox)), paste the URL into the "**when a message comes in**" field and click **save**.
 
-  
 
-**Step 14** - Test your chatbot. You should now be able to talk to your Dialogflow chatbot through the Twilio Sandbox's WhatsApp number.
+**Step 14** - Activate the Cloud Build API, you can find her [here](https://console.cloud.google.com/marketplace/product/google/cloudbuild.googleapis.com)
 
-  
+
+**Step 15** - Test your chatbot. You should now be able to talk to your Dialogflow chatbot through the Twilio Sandbox's WhatsApp number.
+
 
 ## How to Send Media Files
 
