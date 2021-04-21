@@ -1,3 +1,4 @@
+
 # Dialogflow WhatsApp (Twilio) Integration
 
 A simple way to connect and integrate Dialogflow and Twilio to create WhatsApp Chatbots
@@ -48,20 +49,15 @@ A simple way to connect and integrate Dialogflow and Twilio to create WhatsApp C
 
 You can also send media files such as Images, Audios, PDFs and Videos. To do so, add a "Custom Payload" response in your Dialogflow intent with the code:
 
-{
-
-"mediaUrl": "<<YOUR  URL>>"
-
-}
+    {
+	    "mediaUrl": "YOUR_URL"
+    }
 
 You can optionally include a **text** paramater to send a message alongside the image:
 
-{
-
-"mediaUrl": "YOUR_URL",
-
-"text": "YOUR_MESSAGE"
-
-}
+    {
+	    "mediaUrl": "YOUR_URL",
+	    "text": "YOUR_MESSAGE"
+    }
 
 [See here](https://support.twilio.com/hc/en-us/articles/360017961894-Sending-and-Receiving-Media-with-WhatsApp-Messaging-on-Twilio-Beta-) Twilio's documentation to learn more about the limitations for sending media files.
