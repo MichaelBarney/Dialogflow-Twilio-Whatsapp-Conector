@@ -73,5 +73,5 @@ exports.TwilioWebhook = functions.https.onRequest(async (request, response) => {
       console.log(e)
     }
   }
-  response.status(200).send("Sent!");
+  response.status(200).send("<Response><Message>Sent!</Message></Response>");
 });
