@@ -58,9 +58,9 @@ You can optionally include a **text** paramater to send a message alongside the 
 
 {
 
-"mediaUrl": "<<YOUR  URL>>",
+"mediaUrl": "YOUR_URL",
 
-"text": "<<YOUR  MESSAGE>>"
+"text": "YOUR_MESSAGE"
 
 }
 
