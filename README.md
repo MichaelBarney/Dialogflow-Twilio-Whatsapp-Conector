@@ -2,9 +2,7 @@
 
 A simple way to connect and integrate Dialogflow and Twilio to create WhatsApp Chatbots
 
-**2021 Update:**
-
-Altered to use Twilio Functions instead of Google Cloud Functions due to a more simple workflow with a more secure infrastructure.
+**2021 Update:** Altered to use Twilio Functions instead of Google Cloud Functions due to a more simple workflow with a more secure infrastructure.
 
 ## How to Connect With Twilio with Dialogflow
 
