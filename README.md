@@ -1,94 +1,69 @@
-
-  
-
 # Dialogflow WhatsApp (Twilio) Integration
 
-  
+A simple way to connect and integrate Dialogflow and Twilio to create WhatsApp Chatbots
 
-A simple way to connect and integrate Dialogflow and Twilio to create Whatsapp Chatbots
+**2021 Update:**
 
-  
+Altered to use Twilio Functions instead of Google Cloud Functions due to a more simple workflow with a more secure infrastructure.
 
-## How to Connect With Dialogflow
+## How to Connect With Twilio with Dialogflow
 
-  
+**Before Starting** - Create your Dialogflow project and also a Twilio project, we will use both of them for the connection.
 
-**Step 1 -** Open the Google Console for Cloud Functions ([here](https://console.cloud.google.com/functions)) and make sure you have the Google Project of your Dialogflow chatbot selected.
+### Part 1 -- Dialogflow Service Account
 
-  
+**Step 1 -** Open the Google Console for Service Accounts ([here](https://console.cloud.google.com/projectselector/iam-admin/serviceaccounts/create)) and select the Google Project of your Dialogflow chatbot.
 
-**Step 2 -** Click on "Create Function" to open the interface for function creation.
+**Step 2 -** Fill a name for your service account. ("_TwilioConnector_" is a good option) and click on **Create**.
 
-  
+**Step 3-** Add the **Owner** role (Quick Start -> Basic -> Owner) and click on **Done** to finish this process.
 
-**Step 3-** Set the name of the function (**twilio-conector** is a good option)
+**Step 4-** Select the created service account then click on **Keys** --> **Add Key** --> **Create New Key** --> **Create**
 
-  
+**Step 5-** A json file will be downloaded. Rename it to **dialogflow.json**
 
-**Step 4-** On the **Source Code** option, select **Inline Editor** .
+### Part 2 -- Twilio Function
 
-  
+**Step 6-** Open the Twilio Functions page ([here](https://www.twilio.com/console/functions)) and create a new service (I recommend naming it **DialogflowService**).
 
-**Step 5-** In the **index.js** tab, copy and paste the code from the index.js file in this repository.
+**Step 7-** Click on **Add** then **Add Function**. Set the path to **/dialogflow**
 
-  
+**Step 8-** Copy the code from the index.js in this repository and paste it to the code editor. Click on **save**.
 
-**Step 6-** In the **package.json** tab, copy and paste the code from the package.json file in this repository.
+**Step 9-** In settings, add a new Enviroment Variable with the key **DIALOGFLOW_PROJECT_ID** and set its value to your dialogflow project ID (you can find it in your Dialogflow agent's settings)
 
-  
+**Step 10-** Also in settings, click in **Dependencies** and add the module **dialogflow** with version **1.2**
 
-**Step 7** - Set the **Function to Execute** field to "**TwilioWebhook**"
+**Step 11-** Click on **Add** then **Upload File**. Select your **dialogflow.json** file. Set it's visibility to **private**. Click on **Upload**.
 
-  
+**Step 12-** Click on **Deploy All**
 
-**Step 8** - Click on the Dropdown "**Variables, Networking and Advanced Settings**"
+### Part 3 -- Twilio Sandbox
 
-  
+**Step 13-** Click on the three dots next to your created function name and select **copy URL**.
 
-**Step 9** - In the **Enviroment Variables** section, look for **Runtime Enviroment Variables** and click on "Add Variable"
-
-  
-
-**Step 10** - Add variables called:
-
-  
-
--  **projectId** (the project ID found on your Dialogflow's agent settings page)
-
--  **accountSid** (your twilio account Sid value, found on the main dashboard of your Twilio project)
-
--  **authToken** (the authentication token for your Twilio acconut, found on the main dashboard of your Twilio project)
-
-**Step 11** - Click on "Create". In 1-2 minutes your integration will be up and running.
-
-  
-
-**Step 12** - Click on your created function. Open the **Trigger** tab and copy the URL.
-
-  
-
-**Step 13** - In your Twilio Sandbox configuration ([link](https://www.twilio.com/console/sms/whatsapp/sandbox)), paste the URL into the "**when a message comes in**" field and click **save**.
-
-
-**Step 14** - Activate the Cloud Build API, you can find her [here](https://console.cloud.google.com/marketplace/product/google/cloudbuild.googleapis.com)
-
+**Step 14** - In your Twilio Sandbox configuration ([link](https://www.twilio.com/console/sms/whatsapp/sandbox)), paste the URL into the "**when a message comes in**" field and click **save**.
 
 **Step 15** - Test your chatbot. You should now be able to talk to your Dialogflow chatbot through the Twilio Sandbox's WhatsApp number.
-
 
 ## How to Send Media Files
 
 You can also send media files such as Images, Audios, PDFs and Videos. To do so, add a "Custom Payload" response in your Dialogflow intent with the code:
 
-    {
-	    "mediaUrl": "<<YOUR URL>>"
-    }
+{
+
+"mediaUrl": "<<YOUR  URL>>"
+
+}
 
 You can optionally include a **text** paramater to send a message alongside the image:
 
-    {
-	    "mediaUrl": "<<YOUR URL>>",
-	    "text": "<<YOUR MESSAGE>>"
-    }
+{
+
+"mediaUrl": "<<YOUR  URL>>",
+
+"text": "<<YOUR  MESSAGE>>"
+
+}
 
 [See here](https://support.twilio.com/hc/en-us/articles/360017961894-Sending-and-Receiving-Media-with-WhatsApp-Messaging-on-Twilio-Beta-) Twilio's documentation to learn more about the limitations for sending media files.
