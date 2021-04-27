@@ -13,7 +13,7 @@ exports.handler = async function (context, event, callback) {
   const dialogflogSessionClient = new dialogflow.SessionsClient({
     keyFilename: diallofglowJsonFilePath,
   });
-  const dialogflowProjectId = process.env.DIALOGFLOW_PROJECT_ID;
+  const dialogflowProjectId = require(diallofglowJsonFilePath).project_id;
   const dialogflowSessionPath = dialogflogSessionClient.sessionPath(
     dialogflowProjectId,
     userNumber
