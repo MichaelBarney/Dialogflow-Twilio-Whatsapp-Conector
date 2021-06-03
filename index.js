@@ -9,7 +9,7 @@ exports.handler = async function (context, event, callback) {
   if (!receivedMsg) return callback("No message received", twiml);
 
   // Get response from Dialogflow
-  let diallofglowJsonFilePath = Runtime.getAssets()["/dialogflow.json"].path;
+  let diallofglowJsonFilePath = Runtime.getAssets()["dialogflow.json"].path;
   const dialogflogSessionClient = new dialogflow.SessionsClient({
     keyFilename: diallofglowJsonFilePath,
   });
